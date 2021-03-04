@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Calendar from 'react-calendar';
 
 // Componente Dia
 class Day extends React.Component {
@@ -50,7 +51,7 @@ function Week(props) {
 }
 
 // Componente Calendario
-function Calendar(props) {
+function Calendario(props) {
     return (
         <div>
             <div>
@@ -67,13 +68,17 @@ function Calendar(props) {
 
 // Componente Agenda
 function Scheduler() {
+    const [value, onChange] = useState(new Date());
     return (
         <div>
             <div>
-                <Calendar mes={"03"} ano={"2021"} />
+                <Calendario mes={"03"} ano={"2021"} />
             </div>
             <div>
-                Eventos
+                <Calendar
+                    onChange={onChange}
+                    value={value}
+                />
             </div>
         </div>
     )
