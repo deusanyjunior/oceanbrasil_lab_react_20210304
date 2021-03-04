@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
 
 // Componente Dia
 class Day extends React.Component {
@@ -13,7 +14,7 @@ class Day extends React.Component {
     handleOnClick(event) {
         console.log("Estado atual do dia " + this.props.date + " eh " + this.state.hasEvent);
         if(this.state.hasEvent === '0') {
-            this.setState( { hasEvent: '1' } )
+            this.setState( { hasEvent: '1' } );
         } else {
             this.setState( { hasEvent: '0' } )
         }
@@ -22,11 +23,11 @@ class Day extends React.Component {
 
     render () {
         return (
-            <button onClick={this.handleOnClick}>
+            <button className="date" onClick={this.handleOnClick}>
                 { 
                     (this.props.date > 0 && this.props.date < 32 ) ? // pergunta 
                         this.props.date : // se sim
-                        "_" // se nao
+                        '\u2001' // se nao
                 }
             </button>
         );
@@ -36,7 +37,7 @@ class Day extends React.Component {
 // Componente Semana
 function Week(props) {
     return (
-        <div>
+        <div className="week">
             <Day date={props.startDate}     weekday={"Dom"} />
             <Day date={props.startDate + 1} weekday={"Seg"} />
             <Day date={props.startDate + 2} weekday={"Ter"} />
