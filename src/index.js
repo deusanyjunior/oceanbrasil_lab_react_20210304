@@ -2,16 +2,35 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Componente Dia
-function Day(props) {
-    return (
-        <button>
-            { 
-                (props.date > 0 && props.date < 32 ) ? // pergunta 
-                    props.date : // se sim
-                    "_" // se nao
-            }
-        </button>
-    );
+class Day extends React.Component {
+    state = { hasEvent: '0'};
+
+    constructor() {
+        super();
+        this.handleOnClick = this.handleOnClick.bind(this);
+    }
+
+    handleOnClick(event) {
+        console.log("Estado atual do dia " + this.props.date + " eh " + this.state.hasEvent);
+        if(this.state.hasEvent === '0') {
+            this.setState( { hasEvent: '1' } )
+        } else {
+            this.setState( { hasEvent: '0' } )
+        }
+        console.log("Estado final do dia " + this.props.date + " eh " + this.state.hasEvent);
+    }
+
+    render () {
+        return (
+            <button onClick={this.handleOnClick}>
+                { 
+                    (this.props.date > 0 && this.props.date < 32 ) ? // pergunta 
+                        this.props.date : // se sim
+                        "_" // se nao
+                }
+            </button>
+        );
+    }
 }
 
 // Componente Semana
